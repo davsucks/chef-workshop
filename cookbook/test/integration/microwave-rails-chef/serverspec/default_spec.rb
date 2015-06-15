@@ -39,6 +39,10 @@ describe command("cd #{MICROWAVE_HOME} && bundle exec rake db:drop db:create db:
   its(:exit_status) { should eq 0 }
 end
 
+describe command("cd #{MICROWAVE_HOME} && RAILS_ENV=test bundle exec rake db:drop db:create db:migrate") do
+  its(:exit_status) { should eq 0 }
+end
+
 # Node.js (required by Rails 3 asset pipeline)
 describe package("nodejs") do
   it { should be_installed }

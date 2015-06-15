@@ -4,7 +4,7 @@ driver:
   customize:
     memory: 2048
   synced_folders:
-    - ["../rails-app", "/home/vagrant/microwave-workspace"]
+    - ["../", "/home/vagrant/microwave-workspace"]
   network:
     - ["forwarded_port", {guest: 3000, host: 4001}]
     - ["forwarded_port", {guest: 9292, host: 5001}]

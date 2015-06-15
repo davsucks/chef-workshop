@@ -23,3 +23,7 @@ end
 execute "create_database" do
   command "cd #{MICROWAVE_HOME} && bundle exec rake db:drop db:create db:migrate db:seed"
 end
+
+execute "create_test_database" do
+  command "cd #{MICROWAVE_HOME} && RAILS_ENV=test bundle exec rake db:drop db:create db:migrate"
+end

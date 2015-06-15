@@ -16,13 +16,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network "forwarded_port", guest: 3000, host: 4000
   config.vm.network "forwarded_port", guest: 9292, host: 5000
-  config.vm.synced_folder "rails-app", "/home/vagrant/microwave-workspace"
+  config.vm.synced_folder "./", "/home/vagrant/microwave-workspace"
 
   config.berkshelf.berksfile_path = "cookbook/Berksfile"
   config.berkshelf.enabled = true
 
   config.vm.provision "chef_solo" do |chef|
     chef.cookbooks_path = "cookbook"
-    chef.run_list = ['microwave-rails-chef']
+    chef.run_list = ["microwave-rails-chef"]
   end
 end

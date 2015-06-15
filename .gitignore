@@ -3,7 +3,7 @@
 .vagrant/
 cookbook/.kitchen/
 
-*/log/*
-!/log/.keep
-*/tmp
+log/*
+!log/.keep
+tmp/*
 .DS_Store

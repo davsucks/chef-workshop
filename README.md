@@ -30,7 +30,7 @@ See it on your browser at `http://localhost:4000`!
 ## Go Live!
 You'll need a Heroku account to deploy your app. When you're ready, hit the button to go live!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/Microwave-MVC/rails-app)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Authors
 Copyright 2015 Valerie Roske (@valerie-roske).
