@@ -14,7 +14,7 @@ end
 
 # Ruby 2.2.2
 describe package("ruby") do
-  it { should be_installed}
+  it { should be_installed }
 end
 
 describe command("ruby -v") do

@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "microwave-rails-box"
+    vb.name = "chef-workshop-box"
     vb.memory = 2048
   end
 
