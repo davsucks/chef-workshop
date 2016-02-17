@@ -1,4 +1,4 @@
-MICROWAVE_HOME = "/home/vagrant/microwave-workspace"
+WORKSPACE_HOME = "/home/vagrant/workspace"
 
 include_recipe "rbenv::default"
 include_recipe "rbenv::ruby_build"
@@ -17,13 +17,13 @@ rbenv_gem "bundler" do
 end
 
 execute "bundle_install" do
-  command "cd #{MICROWAVE_HOME} && bundle install"
+  command "cd #{WORKSPACE_HOME} && bundle install"
 end
 
 execute "create_database" do
-  command "cd #{MICROWAVE_HOME} && bundle exec rake db:drop db:create db:migrate db:seed"
+  command "cd #{WORKSPACE_HOME} && bundle exec rake db:drop db:create db:migrate db:seed"
 end
 
 execute "create_test_database" do
-  command "cd #{MICROWAVE_HOME} && RAILS_ENV=test bundle exec rake db:drop db:create db:migrate"
+  command "cd #{WORKSPACE_HOME} && RAILS_ENV=test bundle exec rake db:drop db:create db:migrate"
 end

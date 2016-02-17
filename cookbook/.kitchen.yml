@@ -4,7 +4,7 @@ driver:
   customize:
     memory: 2048
   synced_folders:
-    - ["../", "/home/vagrant/microwave-workspace"]
+    - ["../", "/home/vagrant/workspace"]
   network:
     - ["forwarded_port", {guest: 3000, host: 4001}]
     - ["forwarded_port", {guest: 9292, host: 5001}]
@@ -13,11 +13,11 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: microwave-rails-kitchen-box
+  - name: kitchen-box
     driver:
       box: ubuntu/trusty64
 
 suites:
-  - name: microwave-rails-chef
-    run_list: 
-      - microwave-rails-chef
+  - name: chef-workshop
+    run_list:
+      - chef-workshop-cookbook

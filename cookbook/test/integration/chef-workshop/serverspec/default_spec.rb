@@ -2,7 +2,7 @@ require "serverspec"
 
 USER = "vagrant"
 PATH = "/opt/rbenv/bin:/opt/rbenv/shims:$PATH";
-MICROWAVE_HOME = "/home/vagrant/microwave-workspace"
+WORKSPACE_HOME = "/home/vagrant/workspace"
 
 # Required by serverspec
 set :backend, :exec
@@ -26,7 +26,7 @@ describe command("which bundle") do
   its(:stdout) { should match "/opt/rbenv/shims/bundle" }
 end
 
-describe command("cd #{MICROWAVE_HOME} && bundle install") do
+describe command("cd #{WORKSPACE_HOME} && bundle install") do
   its(:exit_status) { should eq 0 }
 end
 
@@ -35,11 +35,11 @@ describe service("postgresql") do
   it { should be_running }
 end
 
-describe command("cd #{MICROWAVE_HOME} && bundle exec rake db:drop db:create db:migrate db:seed") do
+describe command("cd #{WORKSPACE_HOME} && bundle exec rake db:drop db:create db:migrate db:seed") do
   its(:exit_status) { should eq 0 }
 end
 
-describe command("cd #{MICROWAVE_HOME} && RAILS_ENV=test bundle exec rake db:drop db:create db:migrate") do
+describe command("cd #{WORKSPACE_HOME} && RAILS_ENV=test bundle exec rake db:drop db:create db:migrate") do
   its(:exit_status) { should eq 0 }
 end
 
