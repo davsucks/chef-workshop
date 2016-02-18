@@ -2,7 +2,6 @@ require "serverspec"
 
 USER = "vagrant"
 PATH = "/opt/rbenv/bin:/opt/rbenv/shims:$PATH";
-WORKSPACE_HOME = "/home/vagrant/workspace"
 
 # Required by serverspec
 set :backend, :exec
@@ -20,31 +19,3 @@ end
 describe command("ruby -v") do
   its(:stdout) { should match "2.2.2" }
 end
-
-# Bundle
-describe command("which bundle") do
-  its(:stdout) { should match "/opt/rbenv/shims/bundle" }
-end
-
-describe command("cd #{WORKSPACE_HOME} && bundle install") do
-  its(:exit_status) { should eq 0 }
-end
-
-# Postgresql
-describe service("postgresql") do
-  it { should be_running }
-end
-
-describe command("cd #{WORKSPACE_HOME} && bundle exec rake db:drop db:create db:migrate db:seed") do
-  its(:exit_status) { should eq 0 }
-end
-
-describe command("cd #{WORKSPACE_HOME} && RAILS_ENV=test bundle exec rake db:drop db:create db:migrate") do
-  its(:exit_status) { should eq 0 }
-end
-
-# Node.js (required by Rails 3 asset pipeline)
-describe package("nodejs") do
-  it { should be_installed }
-end
-

@@ -6,8 +6,7 @@ driver:
   synced_folders:
     - ["../", "/home/vagrant/workspace"]
   network:
-    - ["forwarded_port", {guest: 3000, host: 4001}]
-    - ["forwarded_port", {guest: 9292, host: 5001}]
+    - ["forwarded_port", {guest: 3000, host: 4000, auto_correct: true}]
 
 provisioner:
   name: chef_solo

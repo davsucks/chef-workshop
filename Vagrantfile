@@ -14,8 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.memory = 2048
   end
 
-  config.vm.network "forwarded_port", guest: 3000, host: 4000
-  config.vm.network "forwarded_port", guest: 9292, host: 5000
+  config.vm.network "forwarded_port", guest: 3000, host: 4000, auto_correct: true
   config.vm.synced_folder "./", "/home/vagrant/workspace"
 
   config.berkshelf.berksfile_path = "cookbook/Berksfile"
