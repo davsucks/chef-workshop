@@ -128,6 +128,10 @@ $ bundle exec puma
 
 You should then be able to see the app by going to `http://localhost:4000` in your browser.
 
+## Helpful Links
+- [An overview of Chef](https://docs.chef.io/chef_overview.html)
+- [Overview of Test-Driven Infrastructure with Chef](https://www.chef.io/blog/2015/04/21/overview-of-test-driven-infrastructure-with-chef/)
+
 ## License
 This has been adapted from @ekcasey's Chef workshop. :)
 MIT License (see [License](https://github.com/Microwave-MVC/microwave-rails/blob/master/LICENSE))
