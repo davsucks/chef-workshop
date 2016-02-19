@@ -26,13 +26,6 @@ Some initial code has been set up for you. This is a simple Ruby app that displa
 ### Berkshelf
 Berkshelf is a dependency manager for Chef. The cookbook we write will depend on cookbooks written by the Chef community. Berkshelf uses the `Berksfile` to determine what dependencies to fetch and where to fetch these dependencies from. Our dependencies will be listed in the `metadata.rb` file.
 
-To verify that your `Berksfile` is set up correctly, you can run the following commands and make sure they execute without errors (nothing will be downloaded because we haven't specified any dependencies yet).
-
-```
-$ cd cookbook/
-$ berks install
-```
-
 ### Test Kitchen
 To borrow directly from the Test Kitchen project, 'Test Kitchen is an integration tool for developing and testing infrastructure code and software on isolated target platforms'. The `kitchen` command line tool allows you to create virtual machines using Vagrant or another driver, upload your cookbook and its dependencies to that machine using Berkshelf, apply your cookbook using Chef, and then verify the state of the machine using a testing framework such as Serverspec.
 
@@ -92,6 +85,9 @@ $ kitchen converge
 #### Manual Testing
 To manually check that Ruby was installed, you can execute `$ kitchen login` to ssh into the box, and run `$ ruby -v`. It should print `2.2.2` to the console -- if it doesn't, keep updating your recipe and converging until it works!
 
+#### Unit Testing
+We haven't yet added unit tests here, but it is possible to unit test your cookbooks with ChefSpec, which is included in the ChefDK. As Chef's overview of testing states: 'The intent of unit testing is to confirm that given specific input, the recipe yields the expected output. Unit tests are meant to execute fast, and happen without converging the node, so they are done in the pre-convergence phase. It is very important that one does not fall into the trap of testing that Chef itself works.' If you want to try your hand at unit testing, you can take a look at some [examples](https://github.com/sethvargo/chefspec/tree/master/examples).
+
 #### Integration Testing
 You might have been wondering about that `/tests` directory. This directory contains a few integration tests that were already written for you to verify if Ruby was installed correctly. Once your VM has been converged with Kitchen, you can run `$ kitchen verify` to run the integration tests. Note that the integration tests should pass against a converged instance, and should fail against an unconverged instance.
 
@@ -131,6 +127,9 @@ You should then be able to see the app by going to `http://localhost:4000` in yo
 ## Helpful Links
 - [An overview of Chef](https://docs.chef.io/chef_overview.html)
 - [Overview of Test-Driven Infrastructure with Chef](https://www.chef.io/blog/2015/04/21/overview-of-test-driven-infrastructure-with-chef/)
+- [SnowflakeServer](http://martinfowler.com/bliki/SnowflakeServer.html)
+- [PhoenixServer](http://martinfowler.com/bliki/PhoenixServer.html)
+- [Moving to the Phoenix Server Pattern](https://www.thoughtworks.com/insights/blog/moving-to-phoenix-server-pattern-introduction)
 
 ## License
 This has been adapted from @ekcasey's Chef workshop. :)
