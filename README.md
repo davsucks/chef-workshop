@@ -78,16 +78,16 @@ Okay, so now we have the `rbenv` cookbook but we need to actually invoke some of
 Once you've managed that, we're still not quite done. You might have noticed in the documention for the `rbenv` cookbook references to LWRPs, or Lightweight Resources and Providers. LWRPs are essentially like functions that allow you to define custom state. So, for example, we need to use the `rbenv_ruby` LWRP to tell Chef to build Ruby 2.2.2 for us as the global ruby version. Read the documentation and add the necessary lines to your recipe to make this happen.
 
 ### Verifying that Ruby was installed
-Here is where the magic of Test Kitchen comes into play. First run `$ kitchen list` to view the status of your VM. It should say, 'Not Created'.
+Here is where the magic of Test Kitchen comes into play. First run `$ kitchen list` while in the `/cookbook` directory to view the status of your VM. It should say, 'Not Created'.
 
-You can create the VM and apply your changes from your cookbook by running the commands below while in the `/cookbook` directory:
+You can create the VM and apply your changes from your cookbook by running the commands below:
 
 ```
 $ kitchen create
 $ kitchen converge
 ```
 
-`$ kitchen converge` will apply your `run_list` to a created instance. Any time you make a change to the recipe, just run this command. If you need to make a change to your `.kitchen.yml` file, however, you will need to destroy and recreate the VM for your changes to take effect.
+`$ kitchen converge` will apply your `run_list` to a created instance. Any time you make a change to the recipe, just run this command. If you need to make a change to your `.kitchen.yml` file, however, you will need to destroy and recreate the VM for your changes to take effect. Just know that converging will take a while the first time you do it; after that it will only apply the changes you made to your runlist since the last time you converged. Keep an eye out for errors, or help others while you wait.
 
 #### Manual Testing
 To manually check that Ruby was installed, you can execute `$ kitchen login` to ssh into the box, and run `$ ruby -v`. It should print `2.2.2` to the console -- if it doesn't, keep updating your recipe and converging until it works!
@@ -101,19 +101,12 @@ Now, you've installed Ruby, but you may have realized you won't be able to start
 ```
 $ kitchen login
 $ cd workspace
-$ bundle exec puma
+$ bundle install
 ```
 
 You should see an error that Bundler isn't installed! Using what you just learned about installing a new Ruby, use the appropriate LWRP to install the bundler gem. Trying writing a test to check that Bundler was installed correctly; see the [ServerSpec](http://serverspec.org/resource_types.html) documention for help.
 
-Once you are successful, log in to the VM and run:
-
-```
-$ bundle install
-$ bundle exec puma
-```
-
-Then you can navigate to `http://localhost:4000` in your browser to see the app. As a bonus exercise, you can try to add code to your recipe so that the `bundle install` command gets run automatically when you provision the VM.
+Once you are successful, log in to the VM and run `$ bundle install` again. As a bonus exercise, you can try to add code to your recipe so that the `bundle install` command gets run automatically when you provision the VM.
 
 ## Your Second Objective: Test-Drive adding a Postgres Database
 If you made it this far, nice work! Now you're going to try writing some tests of your own to verify you have installed Postgres correctly and set up a database for our app.
@@ -124,6 +117,16 @@ After you've seen the test fail, look at the documentation for the [Postgresql c
 
 ## Good Job!
 You've reached the end of this workshop. Give yourself a pat on the back! Keep on cookin' with Chef! :)
+
+You can view the app by running these commands:
+
+```
+$ kitchen login
+$ cd workspace
+$ bundle exec puma
+```
+
+You should then be able to see the app by going to `http://localhost:4000` in your browser.
 
 ## License
 This has been adapted from @ekcasey's Chef workshop. :)

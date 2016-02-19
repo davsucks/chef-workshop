@@ -19,3 +19,8 @@ end
 describe command("ruby -v") do
   its(:stdout) { should match "2.2.2" }
 end
+
+# Node.js (required by Rails 3 asset pipeline)
+describe package("nodejs") do
+  it { should be_installed }
+end
