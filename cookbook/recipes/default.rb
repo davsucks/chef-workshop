@@ -9,3 +9,8 @@ end
 rbenv_gem 'bundler' do
   ruby_version '2.2.2'
 end
+
+rbenv_execute 'bundler' do
+  command 'bundle install'
+  cwd '/home/vagrant/workspace'
+end

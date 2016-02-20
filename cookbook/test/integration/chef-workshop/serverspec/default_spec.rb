@@ -28,3 +28,7 @@ end
 describe package('bundler') do
   it { should be_installed.by('gem') }
 end
+
+describe package('jquery-rails') do
+  it { should be_installed.by('gem') }
+end
