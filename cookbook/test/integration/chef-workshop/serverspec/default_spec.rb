@@ -24,3 +24,7 @@ end
 describe package("nodejs") do
   it { should be_installed }
 end
+
+describe package('bundler') do
+  it { should be_installed.by('gem') }
+end
